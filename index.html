@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task_3</title>
+    <script src="https://kit.fontawesome.com/40e7722792.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+    <body>
+        <div class="menu">
+            <ul>
+                <li>
+                    <span onmouseenter="hoverEnter(0)">
+                        <i class="fa-solid fa-house"></i>
+                    </span>
+                </li>
+                <li>
+                    <span onmouseenter="hoverEnter(1)">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                    </span>
+                </li>
+                <li>
+                    <span onmouseenter="hoverEnter(2)">
+                        <i class="fa-regular fa-folder-open"></i>
+                    </span>
+                </li>
+                <li>
+                    <span onmouseenter="hoverEnter(3)">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </span>
+                </li>
+                <span class="goo-index" id="goo-index"></span>
+            </ul>
+        </div>
+         <!-- content container-------------------- -->
+        <div class="content-wrapper">
+            <!-- first screen --------------------------- -->
+            <div id="screen_0" class="screen visible">
+                <h1>Vasudev Kutumbakam</h1>
+                <p>
+                    Crowdfunding can be a quick and easy way to meet unanticipated, pressing needs. Today, anyone with a smartphone can participate in making a difference with great ease. More and more people are now raising funds online to tackle emergencies more efficiently. Increasing digital access and the convenience of online payments are driving more and more Indians to take the digital route to mobilize greater support for urgent needs on time.
+                </p>
+                <center>
+                    <button id="rzp-button1">Donate</button>
+                    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+                    <script>
+                    var options = {
+                        "key": "rzp_test_EoAYXrkIAubpuM", // Enter the Key ID generated from the Dashboard
+                        "amount": "500", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                        "currency": "INR",
+                        "name": "ABHI",
+                        "description": "Donate for better",
+                        "image": "spark-projects\qeg.png", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                        "handler": function (response){
+                            alert(response.razorpay_payment_id);
+                            alert(response.razorpay_order_id);
+                            alert(response.razorpay_signature)
+                        },
+                        "prefill": {
+                            "name": "Your name",
+                            "email": "xyz@example.com",
+                            "contact": "contact no."
+                        },
+                        "notes": {
+                            "address": "Vasudev Private Limited"
+                        },
+                        "theme": {
+                            "color": "#75FD82"
+                        }
+                    };
+                    var rzp1 = new Razorpay(options);
+                    rzp1.on('payment.failed', function (response){
+                            alert(response.error.code);
+                            alert(response.error.description);
+                            alert(response.error.source);
+                            alert(response.error.step);
+                            alert(response.error.reason);
+                            alert(response.error.metadata.order_id);
+                            alert(response.error.metadata.payment_id);
+                    });
+                    document.getElementById('rzp-button1').onclick = function(e){
+                        rzp1.open();
+                        e.preventDefault();
+                    }
+                    </script>
+                </center>
+                <div class="image" style="background-image:url(home-2.jpg);"></div>
+            </div>
+
+            <!-- screen 2 ------------------------------- -->
+            <div id="screen_1" class="screen">
+                <h1>Why help us ? </h1>
+                <p>
+                    On our platform, you can donate to a nonprofit with confidence. Our robust due diligence process covers legal, compliance, financial and impact checks for each donation made to any non-profit, including in-person visits to beneficiaries and actual feedback reports. 
+                    <ul>
+                        <li>Choice: 200+ organizations to donate to</li>
+                        <li>Simple: Give at a click of a button</li>
+                        <li>Convenience: Contribute monthly with ease</li>
+                        <li>Credible - Donate with confidence to the verified partner NGOs</li>
+                        <li>Scale - Make a big impact with your small amounts. Donate as little as Rs.110/ month</li>
+                    </ul>
+                </p>
+                <div class="image" style="background-image:url(home-1.jpg);"></div>
+            </div>
+
+            <!-- screen 3---------------------- -->
+            <div id="screen_2" class="screen">
+                <h1>Photo Gallery</h1>
+                <center>
+                    <div id="img-container" class="image">
+                        <img src="gallery-1.jpg" style="width: 700px; height: 250px;">
+                    </div>
+                    <div class="image">
+                        <img src="gallery-2.jpg" style="width: 700px; height: 250px;">
+                    </div>
+                </center>
+            </div>
+
+            <!-- screen 4--------------------------- -->
+            <div id="screen_3" class="screen">
+                <h1>Contact Us</h1>
+                <p>Address: Greater Noida, Uttar Pradesh
+                    <br>
+                    Phone No: 9870611049
+                    <br>
+                    Email ID: abhigoyal72621289@mail.com
+                    <br>
+                    Web Address: 
+                </p>
+                <div class="image" style="background-image:url(https://codemyui.com/wp-content/uploads/2017/07/envelope-to-paper-plane-animation.gif)"></div>
+            </div>
+        </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="index.js"></script>
+    </body>
+</html>
